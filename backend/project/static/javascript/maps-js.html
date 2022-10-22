@@ -1,0 +1,75 @@
+<!--<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>-->
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAO34rvyajdtFIAbfElMpK66gRi3xiRGBw&callback=initMap&libraries=&v=weekly"
+defer></script>
+<style type="text/css">
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+    height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+</style>
+<script>
+function create_marker(_lat, _lng, _map, icon) {
+    var myLatLng = { lat: _lat, lng: _lng };
+    var marker_ = new google.maps.Marker({
+        position: myLatLng,
+        map: _map,
+        icon: icon
+    });
+}
+
+
+let map;
+
+function initMap() {
+    
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                const pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: pos,
+                    zoom: 16,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                });
+                var marker_ = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: "./icon.ico"
+                });
+
+                console.log(position.coords.latitude);
+                console.log(position.coords.longitude);
+
+                var i;
+                var lat = 46.307054;
+                var lng = 25.299076;
+                for (i = 0; i < 10; i++) {
+                    var newlat = lat + (Math.random() * 0.03 - 0.015)
+                    var newlng = lng + (Math.random() * 0.03 - 0.015)
+                    create_marker(newlat, newlng, map, "./recycling-container (1).png")
+
+                }
+
+                console.log(pos);
+
+            });
+    }
+
+}
+</script>
+<!-- <script>
+"https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&avoid=highways&mode=bicycling&key=AIzaSyBalu26-c2Mg4--9nTbbOXoJF8rCAKBZLs"
+</script> -->

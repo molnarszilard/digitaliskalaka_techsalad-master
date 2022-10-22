@@ -1,0 +1,6 @@
+cashed_images/*
+.vscode/*
+__pycache__/*
+images/*
+project/cashed_images/*
+project/images/*

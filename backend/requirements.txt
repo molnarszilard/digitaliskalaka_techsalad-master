@@ -1,0 +1,25 @@
+certifi==2020.11.8
+cffi==1.14.4
+chardet==3.0.4
+click==7.1.2
+cryptography==3.2.1
+Flask==1.1.2
+Flask-Cors==3.0.9
+Flask-Login==0.5.0
+Flask-SQLAlchemy @ file:///home/conda/feedstock_root/build_artifacts/flask-sqlalchemy_1594747318500/work
+idna==2.10
+itsdangerous==1.1.0
+Jinja2==2.11.2
+MarkupSafe @ file:///C:/ci/markupsafe_1594405949945/work
+Pillow==8.0.1
+pybase64 @ file:///D:/bld/pybase64_1602964007492/work
+pycparser==2.20
+pyOpenSSL==20.0.0
+requests==2.25.0
+six==1.15.0
+SQLAlchemy @ file:///D:/bld/sqlalchemy_1602547269410/work
+SQLAlchemy-ImageAttach==1.1.0
+urllib3==1.26.2
+Wand==0.6.4
+Werkzeug==1.0.1
+wincertstore==0.2

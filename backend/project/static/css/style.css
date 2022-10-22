@@ -1,0 +1,12 @@
+.inputfile1 + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputfile1:focus + label,
+.inputfile1 + label:hover {
+    background-color: red;
+}

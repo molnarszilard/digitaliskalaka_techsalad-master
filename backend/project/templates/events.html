@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<div style="width: 59%; float:left; background-color: aqua; height: 800px; padding: 2%;">
+    <h1 style="font-size: 26pt;">Browse existing events</h1>
+    <div id="map"></div>
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 90%;
+        }
+    </style>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAO34rvyajdtFIAbfElMpK66gRi3xiRGBw&callback=initMap&libraries=&v=weekly"
+        defer>
+        </script>
+    <script>
+        function create_marker(_lat, _lng, _map, icon) {
+            var myLatLng = { lat: _lat, lng: _lng };
+            var marker_ = new google.maps.Marker({
+                position: myLatLng,
+                map: _map,
+                icon: icon
+            });
+        }
+
+
+        let map;
+
+        function initMap() {
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        const pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        };
+                        map = new google.maps.Map(document.getElementById("map"), {
+                            center: pos,
+                            zoom: 16,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        });
+                        var marker_ = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                            icon: "../static/images/icon.ico"
+                        });
+
+                        // console.log(position.coords.latitude);
+                        // console.log(position.coords.longitude);
+
+                        var i;
+                        var lat = 46.307054;
+                        var lng = 25.299076;
+                        for (i = 0; i < 10; i++) {
+                            var newlat = lat + (Math.random() * 0.03 - 0.015)
+                            var newlng = lng + (Math.random() * 0.03 - 0.015)
+                            create_marker(newlat, newlng, map, "../static/images/recycling-container (1).png")
+
+                        }
+
+                        // console.log(pos);
+
+                    });
+            }
+
+        }
+    </script>
+</div>
+<div class="vl" style="width: 2%; float: left; background-color: beige; height: 800px;"></div>
+<div style="width: 39%; float:right; background-color: aquamarine; height: 800px; padding: 2%;">
+    <h1 style="font-size: 26pt;">Organize new event</h1>
+    <br>
+    <br>
+    <form method="POST" id="eventform" action="/create_event">
+        <label for="image" style="font-size: 18pt;">Title:</label>
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="text" id="title" name="title" placeholder="Title" autofocus="">
+            </div>
+        </div>
+
+        <label for="image" style="font-size: 18pt;">Date and time:</label>
+        <div class="field">
+            <div class="control">
+                <input type="datetime-local" class="input is-large" id="eventdate" name="eventdate">
+            </div>
+        </div>
+
+        <label for="image" style="font-size: 18pt;">Upload an image:</label>
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="file" id="upload-image" name="image" accept="image/png, image/jpeg">
+            </div>
+        </div>
+
+
+    </form>
+
+    <br>
+    <label for="image" style="font-size: 18pt;">Description:</label>
+    <textarea class="input is-large" style="width: 100%; height: 100px;" id="description" name="description"
+        placeholder="Event description..." form="eventform"></textarea>
+    <br>
+    <br>
+    <button class="button is-block is-info is-large is-fullwidth" type="submit" form="eventform">Submit</button>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<div style="width: 100%; height: 300px; padding: 2%;">
+    
+
+  <h1 style="font-size: 26pt;">Predict garbage type</h1>
+    <form id="upload-form" action="{{ url_for('main.check_trash') }}" method="POST" enctype="multipart/form-data">
+
+        <!-- <input type="file" name="file" id="file-picker" class="inputfile1" accept="image/*;capture=camera" capture/>
+        <label for="file">Choose a file</label> -->
+        <!-- <div class="file">
+            <label class="file-label">
+              <input class="file-input" type="file" name="file" id="file-picker"  accept="image/*;capture=camera" capture>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
+              </span>
+            </label>
+          </div> -->
+         
+          <div class="field" style="height: 54px">
+            <div class="file is-centered  is-success has-name  " style="height: 54px">
+              <label class="file-label" style="width: 100%" style="height: 54px">
+                <input class="button is-block is-info is-large is-fullwidth" style="width: 100%;" type="file" name="file" id="file-picker"  accept="image/*;capture=camera" style="height: 54px" capture>
+                <!-- <span class="file-cta" style="width: 100%" style="height: 54px"> -->
+                  <!-- <span class="file-icon" style="height: 54px" >
+                    <i class="fas fa-upload" style="height: 54px"></i>
+                  </span> -->
+                  <!-- <span class="file-label" style="width: 100%; text-align: center;" style="height: 54px"> -->
+                    <!-- Choose a file for recognize    -->
+                  <!-- </span> -->
+                <!-- </span> -->
+                
+              </label>
+            </div>
+          </div>
+
+        <input class="button is-block is-info is-large is-fullwidth" type="submit" value="Recognize" id="upload-button" onclick="clear_prediction()" style="height: 54px">
+    </form>
+
+    <div id="recognition-div" style="width: 100%; height: 100px; padding: 2%;">
+        
+        {%if 'metal' == result.label%}
+        <h1 irecognized-h1" style="font-size: 26pt;">Predicted class:</h1>
+        <img src="{{ url_for('static', filename='images/waste_icon/metal_waste.png') }}" alt="Metal">
+        {%endif%}
+
+        {%if 'glass' == result.label%}
+        <h1 style="font-size: 26pt;">Predicted class:</h1>
+        <img src="{{ url_for('static', filename='images/waste_icon/glass_waste.png') }}" alt="Glass">
+        {%endif%}
+
+        {%if 'plastic' == result.label%}
+        <h1 style="font-size: 26pt;">Predicted class:</h1>
+        <img src="{{ url_for('static', filename='images/waste_icon/plastic_waste.png') }}" alt="Plastic">
+        {%endif%}
+
+        {%if 'trash' == result.label%}
+        <h1 style="font-size: 26pt;">Predicted class:</h1>
+        <img src="{{ url_for('static', filename='images/waste_icon/trash_waste.png') }}" alt="Trash">
+        {%endif%}
+
+        {%if 'paper' == result.label%}
+        <h1 style="font-size: 26pt;">Predicted class:</h1>
+        <img src="{{ url_for('static', filename='images/waste_icon/paper_waste.png') }}" alt="Paper">
+        {%endif%}
+
+        {%if 'organic' == result.label%}
+        
+        <img src="{{ url_for('static', filename='images/waste_icon/organic_waste.png') }}" alt="Organic">
+
+        {%endif%}
+    </div>
+
+</div>
+
+
+
+{% endblock %}

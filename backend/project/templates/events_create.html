@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<div style="width: 100%; float:right; height: 800px; padding: 2%;">
+    <h1 style="font-size: 26pt;">Organize new event</h1>
+    <br>
+    <br>
+    <form method="POST" id="eventform" action="/create_event">
+        <label for="image" style="font-size: 18pt;">Title:</label>
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="text" id="title" name="title" placeholder="Title" autofocus="">
+            </div>
+        </div>
+
+        <label for="image" style="font-size: 18pt;">Date and time:</label>
+        <div class="field">
+            <div class="control">
+                <input type="datetime-local" class="input is-large" id="eventdate" name="eventdate">
+            </div>
+        </div>
+
+        <label for="image" style="font-size: 18pt;">Upload an image:</label>
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="file" id="upload-image" name="image" accept="image/*;capture=camera" capture>
+            </div>
+        </div>
+
+
+    </form>
+
+    <br>
+    <label for="image" style="font-size: 18pt;">Description:</label>
+    <textarea class="input is-large" style="width: 100%; height: 100px;" id="description" name="description"
+        placeholder="Event description..." form="eventform"></textarea>
+    <br>
+    <br>
+    <button class="button is-block is-info is-large is-fullwidth" type="submit" form="eventform">Submit</button>
+</div>
+{% endblock %}
